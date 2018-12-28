@@ -1,9 +1,81 @@
-import { createSwitchNavigator } from 'react-navigation'
+import React from 'react'
+import { Platform } from 'react-native'
+import {
+  createBottomTabNavigator,
+  createStackNavigator,
+  createSwitchNavigator,
+} from 'react-navigation'
 
-import MainTabNavigator from './MainTabNavigator'
+import TabBarIcon from '../components/TabBarIcon'
+import HomeScreen from '../screens/HomeScreen'
+import LandingScreen from '../screens/LandingScreen'
+import StayTunedScreen from '../screens/StayTunedScreen'
+import LinksScreen from '../screens/LinksScreen'
+import SettingsScreen from '../screens/SettingsScreen'
 
-export default createSwitchNavigator({
-  // You could add another route here for authentication.
-  // Read more at https://reactnavigation.org/docs/en/auth-flow.html
-  Main: MainTabNavigator,
+const HomeStack = createStackNavigator({
+  Home: HomeScreen,
 })
+
+HomeStack.navigationOptions = {
+  tabBarLabel: 'Home',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+}
+
+const LinksStack = createStackNavigator({
+  Links: LinksScreen,
+})
+
+LinksStack.navigationOptions = {
+  tabBarLabel: 'Links',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+    />
+  ),
+}
+
+const SettingsStack = createStackNavigator({
+  Settings: SettingsScreen,
+})
+
+SettingsStack.navigationOptions = {
+  tabBarLabel: 'Settings',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+    />
+  ),
+}
+
+const TabNavigator = createBottomTabNavigator({
+  HomeStack,
+  LinksStack,
+  SettingsStack,
+})
+
+const MainStack = createStackNavigator(
+  {
+    Tabs: TabNavigator,
+    Landing: LandingScreen,
+    StayTuned: StayTunedScreen,
+  },
+  { initialRouteName: 'Landing', headerMode: 'screen' }
+)
+
+const AppNavigator = createSwitchNavigator({
+  Main: MainStack,
+})
+
+export default AppNavigator
