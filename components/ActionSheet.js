@@ -13,6 +13,12 @@ import { BlurView } from 'expo'
 import { StyleGuide } from './theme'
 import Sheet from './Sheet'
 
+const { height } = Dimensions.get('window')
+const duration = 350
+const useNativeDriver = Platform.OS === 'android'
+const AnimatedBlurView = Animated.createAnimatedComponent(BlurView)
+const AnimatedSheet = Animated.createAnimatedComponent(Sheet)
+
 export default class ActionSheet extends React.Component {
   static defaultProps = {
     scrollable: false,
@@ -69,6 +75,7 @@ export default class ActionSheet extends React.Component {
       inputRange: [0, 1],
       outputRange: [height, 0],
     })
+
     return (
       <Modal onRequestClose={onRequestClose} transparent {...{ visible }}>
         <View style={styles.modal}>
@@ -111,11 +118,6 @@ export default class ActionSheet extends React.Component {
   }
 }
 
-const { height } = Dimensions.get('window')
-const duration = 350
-const useNativeDriver = Platform.OS === 'android'
-const AnimatedBlurView = Animated.createAnimatedComponent(BlurView)
-const AnimatedSheet = Animated.createAnimatedComponent(Sheet)
 const styles = StyleSheet.create({
   modal: {
     flex: 1,

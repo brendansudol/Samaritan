@@ -7,6 +7,7 @@ import Icon from './Icon'
 export default class LeftAction extends React.PureComponent {
   render() {
     const { name, label, onPress } = this.props
+
     return (
       <TouchableHighlight
         activeOpacity={0.5}

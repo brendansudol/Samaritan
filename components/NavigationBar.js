@@ -1,13 +1,14 @@
 import * as React from 'react'
-
 import { View, Animated, StyleSheet } from 'react-native'
 import { LinearGradient } from 'expo'
 
-import LeftAction from './LeftAction'
-import Text from './Text'
 import IconButton from './IconButton'
+import LeftAction from './LeftAction'
 import SafeAreaView from './SafeAreaView'
+import Text from './Text'
 import { withTheme, StyleGuide } from './theme'
+
+const AnimatedText = Animated.createAnimatedComponent(Text)
 
 class NavigationBar extends React.Component {
   static defaultProps = {
@@ -35,11 +36,13 @@ class NavigationBar extends React.Component {
       expanded,
       largeTitle,
     } = this.props
+
     const block = { flex: largeTitle ? 2 : 1 }
     const containerStyle = {
       backgroundColor:
         type === 'opaque' ? theme.palette.primary : 'transparent',
     }
+
     const navBar = (
       <SafeAreaView style={containerStyle} top>
         <View style={styles.content}>
@@ -96,6 +99,7 @@ class NavigationBar extends React.Component {
         )}
       </SafeAreaView>
     )
+
     if (withGradient) {
       return (
         <LinearGradient colors={['black', 'transparent']}>
@@ -103,6 +107,7 @@ class NavigationBar extends React.Component {
         </LinearGradient>
       )
     }
+
     return navBar
   }
 }
@@ -129,5 +134,4 @@ const styles = StyleSheet.create({
   },
 })
 
-const AnimatedText = Animated.createAnimatedComponent(Text)
 export default withTheme(NavigationBar)

@@ -24,6 +24,7 @@ export default class TabBar extends React.Component {
   render() {
     const { tabs, navigation } = this.props
     const activeKey = tabs[navigation.state.index].key
+
     return (
       <SafeAreaView style={styles.root}>
         <View style={styles.tabs}>

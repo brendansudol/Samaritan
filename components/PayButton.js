@@ -9,8 +9,8 @@ import {
 import { Ionicons as Icon } from '@expo/vector-icons'
 
 import Text from './Text'
-import { StyleGuide } from './theme'
 import { notImplementedYet } from './notImplementedYet'
+import { StyleGuide } from './theme'
 
 export default class PayButton extends React.PureComponent {
   render() {
@@ -18,6 +18,7 @@ export default class PayButton extends React.PureComponent {
       Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback
     const name = Platform.OS === 'ios' ? 'logo-apple' : 'logo-android'
     const color = 'white'
+
     return (
       <Button onPress={notImplementedYet}>
         <View style={styles.button}>

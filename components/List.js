@@ -6,6 +6,7 @@ import { StyleGuide } from './theme'
 export default class List extends React.PureComponent {
   render() {
     const { rows, renderRow } = this.props
+
     return (
       <View style={styles.container}>
         {rows.map((row, index) => (

@@ -11,6 +11,16 @@ import { BlurView } from 'expo'
 
 import CacheManager from './CacheManager'
 
+const propsToCopy = [
+  'borderRadius',
+  'borderBottomLeftRadius',
+  'borderBottomRightRadius',
+  'borderTopLeftRadius',
+  'borderTopRightRadius',
+]
+
+const AnimatedBlurView = Animated.createAnimatedComponent(BlurView)
+
 export default class Image extends React.Component {
   static defaultProps = {
     style: undefined,
@@ -59,13 +69,16 @@ export default class Image extends React.Component {
   render() {
     const { preview, style, defaultSource, ...otherProps } = this.props
     const { uri, intensity } = this.state
+
     const hasDefaultSource = !!defaultSource
     const hasPreview = !!preview
     const isImageReady = !!uri
+
     const opacity = intensity.interpolate({
       inputRange: [0, 100],
       outputRange: [0, 0.5],
     })
+
     const computedStyle = [
       StyleSheet.absoluteFill,
       _.transform(
@@ -73,11 +86,11 @@ export default class Image extends React.Component {
           StyleSheet.flatten(style),
           (value, key) => propsToCopy.indexOf(key) !== -1
         ),
-        // $FlowFixMe
         (result, value, key) =>
           Object.assign(result, { [key]: value - (style.borderWidth || 0) })
       ),
     ]
+
     return (
       <View {...{ style }}>
         {hasDefaultSource && !hasPreview && !isImageReady && (
@@ -107,20 +120,10 @@ export default class Image extends React.Component {
         )}
         {hasPreview && Platform.OS === 'android' && (
           <Animated.View
-            style={[computedStyle, { backgroundColor: black, opacity }]}
+            style={[computedStyle, { backgroundColor: 'black', opacity }]}
           />
         )}
       </View>
     )
   }
 }
-
-const black = 'black'
-const propsToCopy = [
-  'borderRadius',
-  'borderBottomLeftRadius',
-  'borderBottomRightRadius',
-  'borderTopLeftRadius',
-  'borderTopRightRadius',
-]
-const AnimatedBlurView = Animated.createAnimatedComponent(BlurView)

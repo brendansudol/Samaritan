@@ -8,6 +8,8 @@ import { withTheme, StyleGuide } from './theme'
 const { height } = Dimensions.get('window')
 const keyExtractor = item => item.id
 
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
+
 class Feed extends React.Component {
   state = {
     scrollAnimation: new Animated.Value(0),
@@ -33,6 +35,7 @@ class Feed extends React.Component {
       inverted,
     } = this.props
     const { scrollAnimation } = this.state
+
     const translateY = scrollAnimation.interpolate({
       inputRange: [55, 56, 57],
       outputRange: [55, 0, 0],
@@ -54,9 +57,11 @@ class Feed extends React.Component {
       ],
       { useNativeDriver: true }
     )
+
     const titleStyle = back ? {} : { transform: [{ translateY }] }
     const top = theme.palette.primary
     const bottom = theme.palette.lightGray
+
     return (
       <View style={styles.flex}>
         <View
@@ -108,7 +113,6 @@ class Feed extends React.Component {
   }
 }
 
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
 const styles = StyleSheet.create({
   flex: {
     flex: 1,

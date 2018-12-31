@@ -6,6 +6,7 @@ import { StyleGuide } from './theme'
 export default class Content extends React.PureComponent {
   render() {
     const { children, style } = this.props
+
     return (
       <ScrollView style={styles.container} contentContainerStyle={style}>
         {children}

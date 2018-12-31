@@ -6,6 +6,7 @@ import { StyleGuide } from './theme'
 export default class BaseCard extends React.PureComponent {
   render() {
     const { style, onPress, children } = this.props
+
     return (
       <TouchableWithoutFeedback {...{ onPress }}>
         <View style={[styles.card, style]}>{children}</View>
@@ -22,6 +23,5 @@ const styles = StyleSheet.create({
     marginTop: StyleGuide.spacing.small,
     marginBottom: 1,
     ...StyleGuide.styles.borderRadius,
-    // ...StyleGuide.styles.shadow,
   },
 })

@@ -24,8 +24,10 @@ class Button extends React.PureComponent {
       primaryTextColor,
       disabled,
     } = this.props
+
     const opacity = disabled ? 0.5 : 1
-    let color
+    const shadow = primary ? StyleGuide.styles.shadow : {}
+
     let backgroundColor
     if (primary) {
       backgroundColor = theme.palette.primary
@@ -34,6 +36,8 @@ class Button extends React.PureComponent {
     } else {
       backgroundColor = 'transparent'
     }
+
+    let color
     if (primary) {
       color = 'white'
     } else if (secondary) {
@@ -43,7 +47,7 @@ class Button extends React.PureComponent {
     } else {
       color = StyleGuide.palette.darkGray
     }
-    const shadow = primary ? StyleGuide.styles.shadow : {}
+
     let Btn
     if (disabled) {
       Btn = View
@@ -52,6 +56,7 @@ class Button extends React.PureComponent {
     } else {
       Btn = TouchableNativeFeedback
     }
+
     return (
       <Btn {...{ onPress }}>
         <View

@@ -22,6 +22,7 @@ export default class Card extends React.PureComponent {
       children,
       style,
     } = this.props
+
     return (
       <TouchableWithoutFeedback {...{ onPress }}>
         <View style={[styles.card, style]}>
@@ -58,6 +59,7 @@ export default class Card extends React.PureComponent {
 const topGradient = ['rgba(0,0,0,0.8)', 'transparent']
 const bottomGradient = ['transparent', 'rgba(0,0,0,0.8)']
 const subtitle = 'rgba(255, 255, 255, 0.7)'
+
 const styles = StyleSheet.create({
   card: {
     ...StyleGuide.styles.borderRadius,

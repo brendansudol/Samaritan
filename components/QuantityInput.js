@@ -16,6 +16,7 @@ class QuantityInput extends React.Component {
   render() {
     const { singular, plural, from, to, theme } = this.props
     const { quantity } = this.state
+
     return (
       <View
         style={[styles.container, { backgroundColor: theme.palette.secondary }]}

@@ -6,6 +6,8 @@ import Image from './Image'
 import Text from './Text'
 import { StyleGuide } from './theme'
 
+const { width } = Dimensions.get('window')
+
 export default class Header extends React.PureComponent {
   static defaultProps = {
     heightRatio: 0.68,
@@ -15,6 +17,7 @@ export default class Header extends React.PureComponent {
 
   render() {
     const { picture, title, children, heightRatio } = this.props
+
     return (
       <View style={{ height: width * heightRatio }}>
         <Image style={styles.image} {...picture} />
@@ -34,7 +37,6 @@ export default class Header extends React.PureComponent {
   }
 }
 
-const { width } = Dimensions.get('window')
 const styles = StyleSheet.create({
   image: {
     ...StyleSheet.absoluteFillObject,

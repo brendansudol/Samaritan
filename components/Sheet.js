@@ -10,9 +10,9 @@ import {
 } from 'react-native'
 import { Constants } from 'expo'
 
-import { StyleGuide } from './theme'
-import Text from './Text'
 import Icon from './Icon'
+import Text from './Text'
+import { StyleGuide } from './theme'
 
 export default class Sheet extends React.PureComponent {
   static defaultProps = {
@@ -30,11 +30,13 @@ export default class Sheet extends React.PureComponent {
       noSafeArea,
       scrollable,
     } = this.props
+
     const children = noSafeArea ? (
       this.props.children
     ) : (
       <SafeAreaView>{this.props.children}</SafeAreaView>
     )
+
     return (
       <View style={[styles.content, style]}>
         <TouchableWithoutFeedback onPress={toggle}>
@@ -84,6 +86,7 @@ export default class Sheet extends React.PureComponent {
 }
 
 const { height } = Dimensions.get('window')
+
 const styles = StyleSheet.create({
   content: {
     backgroundColor: StyleGuide.palette.white,
