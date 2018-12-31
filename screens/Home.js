@@ -17,7 +17,7 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Home',
     headerRight: (
-      <Button onPress={() => navigation.navigate('Landing')} title="Back" />
+      <Button onPress={() => navigation.navigate('Landing')} title="Foo" />
     ),
   })
 

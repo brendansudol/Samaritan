@@ -1,13 +1,6 @@
 import React from 'react'
-import {
-  Button,
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import { Button } from 'react-native-paper'
 import Swiper from 'react-native-swiper'
 
 const imgs = {
@@ -40,6 +33,7 @@ export default class LandingScreen extends React.Component {
         <Swiper
           style={styles.slideContainer}
           showsButtons={false}
+          loop={false}
           dotColor="#eee"
           activeDotColor="#000"
         >
@@ -48,11 +42,14 @@ export default class LandingScreen extends React.Component {
           <Slide imgKey="tongue" />
           <Slide imgKey="winking" />
         </Swiper>
-        <View style={{ padding: 20, backgroundColor: '#eee' }}>
+        <View style={{ padding: 20, backgroundColor: '#f5f5f5' }}>
           <Button
-            title="Get started"
-            onPress={() => this.props.navigation.navigate('StayTuned')}
-          />
+            mode="contained"
+            color="#fdd33f"
+            onPress={() => this.props.navigation.navigate('Causes')}
+          >
+            Get started
+          </Button>
         </View>
       </View>
     )

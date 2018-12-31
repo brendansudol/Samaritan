@@ -6,16 +6,22 @@ import {
   createSwitchNavigator,
 } from 'react-navigation'
 
+import {
+  StackNavigatorOptions,
+  TabNavigatorOptions,
+} from '../components/Navigation'
 import TabBarIcon from '../components/TabBarIcon'
-import HomeScreen from '../screens/HomeScreen'
-import LandingScreen from '../screens/LandingScreen'
-import StayTunedScreen from '../screens/StayTunedScreen'
-import LinksScreen from '../screens/LinksScreen'
-import SettingsScreen from '../screens/SettingsScreen'
+import Home from '../screens/Home'
+import Landing from '../screens/Landing'
+import StayTuned from '../screens/StayTuned'
+import Links from '../screens/Links'
+import Settings from '../screens/Settings'
+import Cause from '../screens/Cause'
+import Causes from '../screens/Causes'
+import Guides from '../screens/Guides'
+import Guide from '../screens/Guide'
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-})
+const HomeStack = createStackNavigator({ Home })
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
@@ -31,9 +37,7 @@ HomeStack.navigationOptions = {
   ),
 }
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-})
+const LinksStack = createStackNavigator({ Links })
 
 LinksStack.navigationOptions = {
   tabBarLabel: 'Links',
@@ -45,9 +49,7 @@ LinksStack.navigationOptions = {
   ),
 }
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-})
+const SettingsStack = createStackNavigator({ Settings })
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
@@ -59,19 +61,48 @@ SettingsStack.navigationOptions = {
   ),
 }
 
-const TabNavigator = createBottomTabNavigator({
+const ExampleTabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
 })
 
+const CausesNavigator = createStackNavigator(
+  {
+    Causes,
+    Cause,
+  },
+  StackNavigatorOptions
+)
+
+const GuidesNavigator = createStackNavigator(
+  {
+    Guides,
+    Guide,
+  },
+  StackNavigatorOptions
+)
+
+const OldTravelNavigator = createBottomTabNavigator(
+  {
+    Causes: CausesNavigator,
+    Guides: GuidesNavigator,
+  },
+  TabNavigatorOptions([
+    { key: 'Causes', label: 'Causes', icon: 'heart' },
+    { key: 'Guides', label: 'Guides', icon: 'feed' },
+  ])
+)
+
 const MainStack = createStackNavigator(
   {
-    Tabs: TabNavigator,
-    Landing: LandingScreen,
-    StayTuned: StayTunedScreen,
+    Landing,
+    StayTuned,
+    Causes: CausesNavigator,
+    Travel: OldTravelNavigator,
+    ExampleTabs: ExampleTabNavigator,
   },
-  { initialRouteName: 'Landing', headerMode: 'screen' }
+  { initialRouteName: 'Landing', headerMode: 'none' }
 )
 
 const AppNavigator = createSwitchNavigator({
