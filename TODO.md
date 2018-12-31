@@ -1,14 +1,10 @@
 - Landing screen DONE
-- App walkthrough
+- App walkthrough DONE
   - 3-4 swipeable sections
-- Day view
+- Day view DONE
   - today's date
   - 3 cards with charity info / action buttons
-- Charity detail view
-
-Fix:
-
-- understand & unfuck navigation screens
+- Charity detail view DONE
 
 Later:
 
