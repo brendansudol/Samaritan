@@ -2521,7 +2521,16 @@ eslint-plugin-flowtype@^2.35.0:
   dependencies:
     lodash "^4.17.10"
 
-eslint-plugin-import@^2.7.0:
+eslint-plugin-import-order-alphabetical@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-import-order-alphabetical/-/eslint-plugin-import-order-alphabetical-0.0.1.tgz#b37baa49f32660d5cae8f2edb7d90d81bbcedd22"
+  integrity sha512-TZUkw2z9/U2XiuTwW2JgYZhJ//QQuZpA6XqqhIvqmiol+gSrpJofpDwjfxMOZcxjq/G/TDyWMdjgxQ+ikppTkA==
+  dependencies:
+    eslint-module-utils "^2.2.0"
+    lodash "^4.17.4"
+    resolve "^1.6.0"
+
+eslint-plugin-import@^2.14.0, eslint-plugin-import@^2.7.0:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.14.0.tgz#6b17626d2e3e6ad52cfce8807a845d15e22111a8"
   integrity sha512-FpuRtniD/AY6sXByma2Wr0TXvXJ4nA/2/04VPlfpmUDPOpOY264x+ILiwnrk/k4RINgDAyFZByxqPUbSQ5YE7g==
@@ -2544,6 +2553,18 @@ eslint-plugin-prettier@^2.1.2:
   dependencies:
     fast-diff "^1.1.1"
     jest-docblock "^21.0.0"
+
+eslint-plugin-react-native-globals@^0.1.1:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-native-globals/-/eslint-plugin-react-native-globals-0.1.2.tgz#ee1348bc2ceb912303ce6bdbd22e2f045ea86ea2"
+  integrity sha512-9aEPf1JEpiTjcFAmmyw8eiIXmcNZOqaZyHO77wgm0/dWfT/oxC1SrIq8ET38pMxHYrcB6Uew+TzUVsBeczF88g==
+
+eslint-plugin-react-native@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-native/-/eslint-plugin-react-native-3.5.0.tgz#78a5d6aadb11f85d1b114488d1fddfa2bf4fc1fb"
+  integrity sha512-L0qwiBQbG3MVMQk4XVCyyX+9nqJjr9YUmqpJ98Gb+uAmD+xlxT33rDL9ZBQgzMzBxDcUW6WiPcll8j9uXpyLyQ==
+  dependencies:
+    eslint-plugin-react-native-globals "^0.1.1"
 
 eslint-plugin-react@^7.1.0:
   version "7.11.1"

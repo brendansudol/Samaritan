@@ -1,27 +1,33 @@
 import React from 'react'
 import { Image, View, StyleSheet } from 'react-native'
 
+import { Container, NavigationBar, Content } from '../components'
+
 export default class StayTunedScreen extends React.Component {
   static navigationOptions = {
     title: 'Stay tuned!',
   }
 
   render() {
+    const { navigation } = this.props
+
     return (
-      <View style={styles.container}>
-        <Image
-          source={require('../assets/images/icon.png')}
-          style={styles.img}
-        />
-      </View>
+      <Container>
+        <NavigationBar title="Test" expanded {...{ navigation }} />
+        <Content style={styles.content}>
+          <Image
+            source={require('../assets/images/icon-transparent.png')}
+            style={styles.img}
+          />
+        </Content>
+      </Container>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  content: {
     flex: 1,
-    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
   },

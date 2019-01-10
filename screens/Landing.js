@@ -22,7 +22,7 @@ const Slide = ({ imgKey = 'grinning' }) => (
   </View>
 )
 
-export default class LandingScreen extends React.Component {
+export default class Landing extends React.Component {
   static navigationOptions = {
     header: null,
   }
@@ -46,7 +46,7 @@ export default class LandingScreen extends React.Component {
           <Button
             mode="contained"
             color="#fdd33f"
-            onPress={() => this.props.navigation.navigate('Causes')}
+            onPress={() => this.props.navigation.navigate('Main')}
           >
             Get started
           </Button>

@@ -1,3 +1,4 @@
+import { BlurView } from 'expo'
 import * as React from 'react'
 import {
   StyleSheet,
@@ -8,10 +9,9 @@ import {
   Platform,
   Modal,
 } from 'react-native'
-import { BlurView } from 'expo'
 
-import { StyleGuide } from './theme'
 import Sheet from './Sheet'
+import { StyleGuide } from './theme'
 
 const { height } = Dimensions.get('window')
 const duration = 350

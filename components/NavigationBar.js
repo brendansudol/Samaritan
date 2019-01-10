@@ -1,6 +1,6 @@
+import { LinearGradient } from 'expo'
 import * as React from 'react'
 import { View, Animated, StyleSheet } from 'react-native'
-import { LinearGradient } from 'expo'
 
 import IconButton from './IconButton'
 import LeftAction from './LeftAction'

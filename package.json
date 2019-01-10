@@ -30,6 +30,9 @@
     "babel-preset-expo": "^5.0.0",
     "eslint": "^5.11.0",
     "eslint-config-universe": "^1.0.7",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-import-order-alphabetical": "^0.0.1",
+    "eslint-plugin-react-native": "^3.5.0",
     "jest-expo": "^31.0.0",
     "prettier": "^1.15.3"
   },
@@ -37,10 +40,23 @@
     "extends": [
       "universe/native"
     ],
+    "plugins": [
+      "import",
+      "import-order-alphabetical",
+      "react-native"
+    ],
     "settings": {
       "react": {
         "version": "16.5.0"
       }
+    },
+    "rules": {
+      "import/no-unresolved": 2,
+      "import/first": 2,
+      "import/order": 2,
+      "import-order-alphabetical/order": 2,
+      "react-native/no-unused-styles": 2,
+      "react-native/no-inline-styles": 0
     }
   }
 }

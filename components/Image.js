@@ -1,3 +1,4 @@
+import { BlurView } from 'expo'
 import * as _ from 'lodash'
 import * as React from 'react'
 import {
@@ -7,7 +8,6 @@ import {
   View,
   Platform,
 } from 'react-native'
-import { BlurView } from 'expo'
 
 import CacheManager from './CacheManager'
 

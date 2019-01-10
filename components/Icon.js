@@ -1,5 +1,5 @@
-import * as React from 'react'
 import { createIconSetFromIcoMoon } from '@expo/vector-icons'
+import * as React from 'react'
 
 import icoMoonConfig from '../assets/icons/config.json'
 import { StyleGuide, withTheme } from './theme'

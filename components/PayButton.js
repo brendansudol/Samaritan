@@ -1,3 +1,4 @@
+import { Ionicons as Icon } from '@expo/vector-icons'
 import * as React from 'react'
 import {
   StyleSheet,
@@ -6,10 +7,9 @@ import {
   TouchableNativeFeedback,
   View,
 } from 'react-native'
-import { Ionicons as Icon } from '@expo/vector-icons'
 
-import Text from './Text'
 import { notImplementedYet } from './notImplementedYet'
+import Text from './Text'
 import { StyleGuide } from './theme'
 
 export default class PayButton extends React.PureComponent {

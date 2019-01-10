@@ -1,6 +1,6 @@
-import * as _ from 'lodash'
-import { FileSystem } from 'expo'
 import SHA1 from 'crypto-js/sha1'
+import { FileSystem } from 'expo'
+import * as _ from 'lodash'
 
 const BASE_DIR = `${FileSystem.cacheDirectory}expo-image-cache/`
 

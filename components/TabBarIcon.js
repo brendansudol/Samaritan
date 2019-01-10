@@ -1,5 +1,5 @@
-import React from 'react'
 import { Icon } from 'expo'
+import React from 'react'
 
 import Colors from '../constants/Colors'
 

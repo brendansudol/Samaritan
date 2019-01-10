@@ -22,7 +22,7 @@ export default class Causes extends React.Component {
     const title = 'Causes'
     const rightAction = {
       icon: 'sign-out',
-      onPress: () => navigation.navigate('Landing'),
+      onPress: () => navigation.navigate('Auth'),
     }
 
     return <Feed {...{ data, renderItem, title, navigation, rightAction }} />

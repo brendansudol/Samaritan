@@ -1,8 +1,8 @@
-const guides = require('./guides')
-const paris = require('./cities/paris')
-const venice = require('./cities/venice')
-const sydney = require('./cities/sydney')
 const newyork = require('./cities/newyork')
+const paris = require('./cities/paris')
+const sydney = require('./cities/sydney')
+const venice = require('./cities/venice')
+const guides = require('./guides')
 
 const api = {
   guides,

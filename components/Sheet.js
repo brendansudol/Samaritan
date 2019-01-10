@@ -1,3 +1,4 @@
+import { Constants } from 'expo'
 import * as React from 'react'
 import {
   StyleSheet,
@@ -8,7 +9,6 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native'
-import { Constants } from 'expo'
 
 import Icon from './Icon'
 import Text from './Text'

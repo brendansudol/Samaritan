@@ -1,6 +1,6 @@
+import { LinearGradient } from 'expo'
 import * as React from 'react'
 import { StyleSheet, View, Dimensions } from 'react-native'
-import { LinearGradient } from 'expo'
 
 import Image from './Image'
 import Text from './Text'
