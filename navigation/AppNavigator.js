@@ -13,9 +13,9 @@ import {
 import Cause from '../screens/Cause'
 import Causes from '../screens/Causes'
 import Landing from '../screens/Landing'
+import Profile from '../screens/Profile'
 import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
-import StayTuned from '../screens/StayTuned'
 
 const CausesStack = createStackNavigator(
   {
@@ -28,13 +28,11 @@ const CausesStack = createStackNavigator(
 const MainTabNavigator = createBottomTabNavigator(
   {
     Causes: CausesStack,
-    Foo: StayTuned,
-    Bar: StayTuned,
+    Profile,
   },
   TabNavigatorOptions([
     { key: 'Causes', label: 'Causes', icon: 'feed' },
-    { key: 'Foo', label: 'Foo', icon: 'account' },
-    { key: 'Bar', label: 'Bar', icon: 'money' },
+    { key: 'Profile', label: 'Profile', icon: 'account' },
   ])
 )
 
@@ -49,7 +47,7 @@ const AppNavigator = createSwitchNavigator(
     Main: MainTabNavigator,
     Auth: AuthStack,
   },
-  { initialRouteName: 'Landing', headerMode: 'none' }
+  { initialRouteName: 'Main', headerMode: 'none' }
 )
 
 export default AppNavigator

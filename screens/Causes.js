@@ -1,9 +1,11 @@
-import * as React from 'react'
+import moment from 'moment'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Api from '../api'
 import { Card, Feed } from '../components'
 
-export default class Causes extends React.Component {
+class Causes extends Component {
   renderItem = cause => (
     <Card
       height={180}
@@ -18,8 +20,10 @@ export default class Causes extends React.Component {
     const { renderItem } = this
     const { navigation } = this.props
 
+    console.log(this.props)
+
     const data = Api.cities
-    const title = 'Causes'
+    const title = moment().format('ddd, MMM Do')
     const rightAction = {
       icon: 'sign-out',
       onPress: () => navigation.navigate('Auth'),
@@ -28,3 +32,9 @@ export default class Causes extends React.Component {
     return <Feed {...{ data, renderItem, title, navigation, rightAction }} />
   }
 }
+
+const mapStateToProps = state => {
+  return { state }
+}
+
+export default connect(mapStateToProps)(Causes)

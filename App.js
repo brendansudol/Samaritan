@@ -1,10 +1,19 @@
 import { AppLoading, Asset, Font, Icon } from 'expo'
 import React from 'react'
+import { Provider } from 'react-redux'
 import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 import { Provider as PaperProvider } from 'react-native-paper'
+import { createStore, applyMiddleware } from 'redux'
+import { createLogger } from 'redux-logger'
+import thunk from 'redux-thunk'
 
 import { ThemeProvider } from './components'
 import AppNavigator from './navigation/AppNavigator'
+import reducer from './reducers'
+
+// TODO: remove logger in prod
+const middleware = [thunk, createLogger()]
+const store = createStore(reducer, applyMiddleware(...middleware))
 
 export default class App extends React.Component {
   state = {
@@ -24,11 +33,13 @@ export default class App extends React.Component {
       return (
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <ThemeProvider>
-            <PaperProvider>
-              <AppNavigator />
-            </PaperProvider>
-          </ThemeProvider>
+          <Provider store={store}>
+            <ThemeProvider>
+              <PaperProvider>
+                <AppNavigator />
+              </PaperProvider>
+            </ThemeProvider>
+          </Provider>
         </View>
       )
     }

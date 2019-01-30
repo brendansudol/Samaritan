@@ -1,6 +1,8 @@
 import React from 'react'
-import { AsyncStorage, View, StyleSheet } from 'react-native'
+import { AsyncStorage, View, StyleSheet, Text } from 'react-native'
 import { Button, TextInput } from 'react-native-paper'
+
+import { signInTemp } from '../util'
 
 export default class SignUp extends React.Component {
   static navigationOptions = {
@@ -8,6 +10,7 @@ export default class SignUp extends React.Component {
   }
 
   state = {
+    name: '',
     email: '',
     password: '',
   }
@@ -15,11 +18,20 @@ export default class SignUp extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View>
+        <View style={styles.form}>
+          <TextInput
+            label="Name"
+            textContentType="givenName"
+            underlineColor="transparent"
+            style={[styles.input, styles.mb1]}
+            value={this.state.name}
+            onChangeText={name => this.setState({ name })}
+          />
           <TextInput
             label="Email"
             textContentType="emailAddress"
-            style={styles.mb1}
+            underlineColor="transparent"
+            style={[styles.input, styles.mb1]}
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
           />
@@ -27,7 +39,8 @@ export default class SignUp extends React.Component {
             label="Password"
             textContentType="password"
             secureTextEntry={true}
-            style={styles.mb1}
+            underlineColor="transparent"
+            style={[styles.input, styles.mb1]}
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
           />
@@ -39,18 +52,23 @@ export default class SignUp extends React.Component {
             Sign up
           </Button>
         </View>
-        <Button
-          mode="outlined"
-          onPress={() => this.props.navigation.navigate('SignIn')}
-        >
-          Or, sign in
-        </Button>
+        <View style={styles.footer}>
+          <Text>Already have an account?</Text>
+          <Button
+            mode="text"
+            onPress={() => this.props.navigation.navigate('SignIn')}
+            color="#000"
+            uppercase={false}
+          >
+            Sign in here
+          </Button>
+        </View>
       </View>
     )
   }
 
   _signUpAsync = async () => {
-    await AsyncStorage.setItem('userToken', 'abc')
+    await signInTemp()
     this.props.navigation.navigate('Causes')
   }
 }
@@ -58,11 +76,25 @@ export default class SignUp extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
     justifyContent: 'space-between',
     backgroundColor: '#f8f8f8',
   },
+  form: {
+    padding: 48,
+    marginTop: 24,
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    paddingTop: 16,
+    paddingBottom: 32,
+  },
+  input: {
+    backgroundColor: '#fff',
+  },
   mb1: {
-    marginBottom: 16,
+    marginBottom: 8,
   },
 })
