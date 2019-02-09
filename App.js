@@ -2,7 +2,7 @@ import { AppLoading, Asset, Font, Icon } from 'expo'
 import React from 'react'
 import { Provider } from 'react-redux'
 import { Platform, StatusBar, StyleSheet, View } from 'react-native'
-import { Provider as PaperProvider } from 'react-native-paper'
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper'
 import { createStore, applyMiddleware } from 'redux'
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
@@ -14,6 +14,16 @@ import reducer from './reducers'
 // TODO: remove logger in prod
 const middleware = [thunk, createLogger()]
 const store = createStore(reducer, applyMiddleware(...middleware))
+
+const theme = {
+  ...DefaultTheme,
+  roundness: 8,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: 'tomato',
+    accent: '#f1c40f',
+  },
+}
 
 export default class App extends React.Component {
   state = {
@@ -35,7 +45,7 @@ export default class App extends React.Component {
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           <Provider store={store}>
             <ThemeProvider>
-              <PaperProvider>
+              <PaperProvider theme={theme}>
                 <AppNavigator />
               </PaperProvider>
             </ThemeProvider>
@@ -58,6 +68,7 @@ export default class App extends React.Component {
         'SFProText-Bold': require('./assets/fonts/SF-Pro-Text-Bold.otf'),
         'SFProText-Semibold': require('./assets/fonts/SF-Pro-Text-Semibold.otf'),
         'SFProText-Regular': require('./assets/fonts/SF-Pro-Text-Regular.otf'),
+        tinderclone: require('./assets/fonts/tinderclone.ttf'),
       }),
     ])
   }

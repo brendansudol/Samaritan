@@ -4,6 +4,7 @@ import {
   View,
   TouchableWithoutFeedback,
   SafeAreaView,
+  Text,
 } from 'react-native'
 import { StackActions } from 'react-navigation'
 
@@ -34,7 +35,11 @@ export default class TabBar extends React.Component {
               onPress={() => this.navigate(tab.key)}
             >
               <View style={styles.tab}>
-                <Icon name={tab.icon} primary={activeKey === tab.key} />
+                {tab.icon ? (
+                  <Icon name={tab.icon} primary={activeKey === tab.key} />
+                ) : (
+                  <Text>{tab.label}</Text>
+                )}
               </View>
             </TouchableWithoutFeedback>
           ))}
