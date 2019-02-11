@@ -1,6 +1,8 @@
 import React from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
-import { Button, Chip, Title } from 'react-native-paper'
+import { Button, Text } from 'react-native-elements'
+
+import { uiStyles } from '../util/styles'
 
 const options = ['abc', 'def', 'ghi', 'jkl', 'mno', 'pqr', 'stu', 'vwy']
 
@@ -27,29 +29,49 @@ export default class StayTunedScreen extends React.Component {
         style={[styles.container, { backgroundColor: '#eee' }]}
         contentContainerStyle={styles.content}
       >
-        <Title style={{ marginBottom: 16 }}>What are your interests?</Title>
-        <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+        <Text h2>What are your interests?</Text>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            paddingVertical: 24,
+          }}
+        >
           {options.map((option, i) => (
-            <Chip
+            <Button
               key={i}
-              mode="outlined"
-              selected={selected.has(option)}
-              style={{ marginRight: 8, marginBottom: 8 }}
+              type={selected.has(option) ? 'solid' : 'outline'}
+              title={option}
               onPress={this.handleClick(option)}
-            >
-              {option}
-            </Chip>
+              {...optionBtnStyles}
+            />
           ))}
         </View>
         <Button
-          mode="contained"
-          onPress={() => this.props.navigation.navigate('Interests')}
-        >
-          Next
-        </Button>
+          title="Next"
+          containerStyle={uiStyles.button.containerStyle}
+          buttonStyle={uiStyles.button.buttonStyle}
+          onPress={() => this.props.navigation.navigate('Causes')}
+        />
       </ScrollView>
     )
   }
+}
+
+const optionBtnStyles = {
+  containerStyle: {
+    marginRight: 8,
+    marginBottom: 8,
+  },
+  buttonStyle: {
+    borderRadius: 8,
+    borderWidth: 1,
+    paddingHorizontal: 16,
+  },
+  titleStyle: {
+    fontSize: 12,
+  },
 }
 
 const styles = StyleSheet.create({

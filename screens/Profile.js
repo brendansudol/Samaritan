@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, View, StyleSheet, Text } from 'react-native'
-import { Button } from 'react-native-paper'
+import { Button } from 'react-native-elements'
 import { NavigationEvents } from 'react-navigation'
 
 import { Container, NavigationBar, Content } from '../components'
@@ -48,18 +48,17 @@ export default class Profile extends React.Component {
       return (
         <View>
           <Text style={{ marginBottom: 32 }}>My donations... (TODO)</Text>
-          <Button mode="contained" onPress={this.handleSignOut}>
-            Sign out
-          </Button>
+          <Button title="Sign out" onPress={this.handleSignOut} />
         </View>
       )
     }
 
     return (
       <View>
-        <Button mode="contained" onPress={() => navigation.navigate('Auth')}>
-          Please sign in
-        </Button>
+        <Button
+          title="Please sign in"
+          onPress={() => navigation.navigate('Auth')}
+        />
       </View>
     )
   }

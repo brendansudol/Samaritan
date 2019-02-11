@@ -1,8 +1,9 @@
 import React from 'react'
 import { AsyncStorage, View, StyleSheet, Text } from 'react-native'
-import { Button, TextInput } from 'react-native-paper'
+import { Button, Input } from 'react-native-elements'
 
 import { signInTemp } from '../util'
+import { uiStyles } from '../util/styles'
 
 export default class SignUp extends React.Component {
   static navigationOptions = {
@@ -19,49 +20,46 @@ export default class SignUp extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.form}>
-          <TextInput
-            label="Name"
+          <Input
+            placeholder="Name"
             textContentType="givenName"
-            underlineColor="transparent"
-            style={[styles.input, styles.mb1]}
+            containerStyle={uiStyles.input.containerStyle}
+            inputContainerStyle={uiStyles.input.inputContainerStyle}
             value={this.state.name}
             onChangeText={name => this.setState({ name })}
           />
-          <TextInput
-            label="Email"
+          <Input
+            placeholder="Email"
             textContentType="emailAddress"
-            underlineColor="transparent"
-            style={[styles.input, styles.mb1]}
+            containerStyle={uiStyles.input.containerStyle}
+            inputContainerStyle={uiStyles.input.inputContainerStyle}
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
           />
-          <TextInput
-            label="Password"
+          <Input
+            placeholder="Password"
             textContentType="password"
-            secureTextEntry={true}
-            underlineColor="transparent"
-            style={[styles.input, styles.mb1]}
+            containerStyle={uiStyles.input.containerStyle}
+            inputContainerStyle={uiStyles.input.inputContainerStyle}
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
           />
           <Button
-            mode="contained"
-            style={styles.mb1}
+            title="Sign up"
+            containerStyle={uiStyles.button.containerStyle}
+            buttonStyle={uiStyles.button.buttonStyle}
             onPress={this._signUpAsync}
-          >
-            Sign up
-          </Button>
+          />
         </View>
         <View style={styles.footer}>
           <Text>Already have an account?</Text>
           <Button
-            mode="text"
+            title="Sign in"
+            type="clear"
+            buttonStyle={{ padding: 4 }}
+            titleStyle={{ fontSize: 14, fontWeight: 'bold', color: '#000' }}
             onPress={() => this.props.navigation.navigate('SignIn')}
-            color="#000"
-            uppercase={false}
-          >
-            Sign in here
-          </Button>
+          />
         </View>
       </View>
     )
@@ -69,7 +67,7 @@ export default class SignUp extends React.Component {
 
   _signUpAsync = async () => {
     await signInTemp()
-    this.props.navigation.navigate('Causes')
+    this.props.navigation.navigate('Interests')
   }
 }
 
@@ -88,13 +86,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
-    paddingTop: 16,
-    paddingBottom: 32,
-  },
-  input: {
-    backgroundColor: '#fff',
-  },
-  mb1: {
-    marginBottom: 8,
+    paddingVertical: 32,
   },
 })

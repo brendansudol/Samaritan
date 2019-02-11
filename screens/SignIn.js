@@ -1,8 +1,9 @@
 import React from 'react'
 import { AsyncStorage, View, StyleSheet, Text } from 'react-native'
-import { Button, TextInput } from 'react-native-paper'
+import { Button, Input } from 'react-native-elements'
 
 import { signInTemp } from '../util'
+import { uiStyles } from '../util/styles'
 
 export default class SignIn extends React.Component {
   static navigationOptions = {
@@ -18,41 +19,38 @@ export default class SignIn extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.form}>
-          <TextInput
-            label="Email"
+          <Input
+            placeholder="Email"
             textContentType="emailAddress"
-            underlineColor="transparent"
-            style={[styles.input, styles.mb1]}
+            containerStyle={uiStyles.input.containerStyle}
+            inputContainerStyle={uiStyles.input.inputContainerStyle}
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
           />
-          <TextInput
-            label="Password"
+          <Input
+            placeholder="Password"
             textContentType="password"
-            secureTextEntry={true}
-            underlineColor="transparent"
-            style={[styles.input, styles.mb1]}
+            containerStyle={uiStyles.input.containerStyle}
+            inputContainerStyle={uiStyles.input.inputContainerStyle}
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
           />
           <Button
-            mode="contained"
-            style={styles.mb1}
+            title="Sign in"
+            containerStyle={uiStyles.button.containerStyle}
+            buttonStyle={uiStyles.button.buttonStyle}
             onPress={this._signInAsync}
-          >
-            Sign in
-          </Button>
+          />
         </View>
         <View style={styles.footer}>
           <Text>Not a member?</Text>
           <Button
-            mode="text"
+            title="Create account"
+            type="clear"
+            buttonStyle={{ padding: 4 }}
+            titleStyle={{ fontSize: 14, fontWeight: 'bold', color: '#000' }}
             onPress={() => this.props.navigation.navigate('SignUp')}
-            color="#000"
-            uppercase={false}
-          >
-            Create an account
-          </Button>
+          />
         </View>
       </View>
     )
@@ -60,7 +58,7 @@ export default class SignIn extends React.Component {
 
   _signInAsync = async () => {
     await signInTemp()
-    this.props.navigation.navigate('Causes')
+    this.props.navigation.navigate('CardSwipers')
   }
 }
 
@@ -79,13 +77,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
-    paddingTop: 16,
-    paddingBottom: 32,
-  },
-  input: {
-    backgroundColor: '#fff',
-  },
-  mb1: {
-    marginBottom: 8,
+    paddingVertical: 32,
   },
 })

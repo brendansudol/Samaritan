@@ -2,7 +2,7 @@ import { AppLoading, Asset, Font, Icon } from 'expo'
 import React from 'react'
 import { Provider } from 'react-redux'
 import { Platform, StatusBar, StyleSheet, View } from 'react-native'
-import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper'
+import { ThemeProvider as ElementsThemeProvider } from 'react-native-elements'
 import { createStore, applyMiddleware } from 'redux'
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
@@ -11,19 +11,22 @@ import { ThemeProvider } from './components'
 import AppNavigator from './navigation/AppNavigator'
 import reducer from './reducers'
 
+const theme = {
+  Button: {
+    titleStyle: {
+      fontWeight: 'bold',
+    },
+  },
+  Text: {
+    style: {
+      fontFamily: 'SFProText-Bold',
+    },
+  },
+}
+
 // TODO: remove logger in prod
 const middleware = [thunk, createLogger()]
 const store = createStore(reducer, applyMiddleware(...middleware))
-
-const theme = {
-  ...DefaultTheme,
-  roundness: 8,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: 'tomato',
-    accent: '#f1c40f',
-  },
-}
 
 export default class App extends React.Component {
   state = {
@@ -44,11 +47,11 @@ export default class App extends React.Component {
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           <Provider store={store}>
-            <ThemeProvider>
-              <PaperProvider theme={theme}>
+            <ElementsThemeProvider theme={theme}>
+              <ThemeProvider>
                 <AppNavigator />
-              </PaperProvider>
-            </ThemeProvider>
+              </ThemeProvider>
+            </ElementsThemeProvider>
           </Provider>
         </View>
       )

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
-import { Button } from 'react-native-paper'
+import { Button } from 'react-native-elements'
 import Swiper from 'react-native-swiper'
 
 const imgs = {
@@ -44,12 +44,11 @@ export default class Landing extends React.Component {
         </Swiper>
         <View style={{ padding: 20, backgroundColor: '#f5f5f5' }}>
           <Button
-            mode="contained"
-            color="#fdd33f"
+            title="Get started"
             onPress={() => this.props.navigation.navigate('Main')}
-          >
-            Get started
-          </Button>
+            buttonStyle={{ backgroundColor: '#fdd33f' }}
+            titleStyle={{ color: '#000' }}
+          />
         </View>
       </View>
     )

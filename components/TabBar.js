@@ -15,11 +15,17 @@ export default class TabBar extends React.Component {
   navigate(key) {
     const { tabs, navigation } = this.props
     const activeKey = tabs[navigation.state.index].key
+
     if (activeKey !== key) {
       navigation.navigate(key)
-    } else {
-      navigation.dispatch(StackActions.pop({ n: 1 }))
     }
+
+    // if (activeKey !== key) {
+    //   navigation.navigate(key)
+    // } else {
+    //   return
+    //   navigation.dispatch(StackActions.pop({ n: 1 }))
+    // }
   }
 
   render() {
@@ -38,7 +44,13 @@ export default class TabBar extends React.Component {
                 {tab.icon ? (
                   <Icon name={tab.icon} primary={activeKey === tab.key} />
                 ) : (
-                  <Text>{tab.label}</Text>
+                  <Text
+                    style={{
+                      fontWeight: activeKey === tab.key ? 'bold' : 'normal',
+                    }}
+                  >
+                    {tab.label}
+                  </Text>
                 )}
               </View>
             </TouchableWithoutFeedback>
