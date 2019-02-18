@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, View, StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import { NavigationEvents } from 'react-navigation'
 

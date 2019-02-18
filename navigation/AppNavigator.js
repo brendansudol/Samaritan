@@ -1,32 +1,31 @@
-import React from 'react'
-import { Platform } from 'react-native'
 import {
+  createAppContainer,
   createBottomTabNavigator,
   createStackNavigator,
   createSwitchNavigator,
 } from 'react-navigation'
 
+import ExampleA from '../components/Experiments/A/Example'
+import ExampleB from '../components/Experiments/B/Example'
+import ExampleC from '../components/Experiments/C/Example'
+import ExampleD from '../components/Experiments/D/Example'
+import ExampleE from '../components/Experiments/E/Example'
 import {
   StackNavigatorOptions,
   TabNavigatorOptions,
 } from '../components/Navigation'
-
 import Cause from '../screens/Cause'
 import Causes from '../screens/Causes'
+import Causes2 from '../screens/Causes2'
 import Interests from '../screens/Interests'
 import Landing from '../screens/Landing'
 import Profile from '../screens/Profile'
 import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
 
-import ExampleA from '../components/CardSwipers/A/Example'
-import ExampleB from '../components/CardSwipers/B/Example'
-import ExampleC from '../components/CardSwipers/C/Example'
-import ExampleD from '../components/CardSwipers/D/Example'
-import ExampleE from '../components/CardSwipers/E/Example'
-
 const CausesStack = createStackNavigator(
   {
+    Causes2,
     Causes,
     Cause,
   },
@@ -44,7 +43,7 @@ const MainTabNavigator = createBottomTabNavigator(
   ])
 )
 
-const CardSwipers = createBottomTabNavigator(
+const CardSwiperTabNavigator = createBottomTabNavigator(
   {
     ExampleA,
     ExampleB,
@@ -67,14 +66,16 @@ const AuthStack = createStackNavigator({
   Interests,
 })
 
-const AppNavigator = createSwitchNavigator(
+const RootNavigator = createSwitchNavigator(
   {
-    CardSwipers,
+    Auth: AuthStack,
+    CardSwipers: CardSwiperTabNavigator,
     Landing,
     Main: MainTabNavigator,
-    Auth: AuthStack,
   },
-  { initialRouteName: 'Landing', headerMode: 'none' }
+  { initialRouteName: 'Main', headerMode: 'none' }
 )
 
-export default AppNavigator
+const App = createAppContainer(RootNavigator)
+
+export default App

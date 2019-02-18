@@ -29,7 +29,7 @@ export default class ThemeProvider extends React.Component {
 
   componentDidMount() {
     if (ThemeProvider.instance !== null) {
-      throw new Error('Only one ThemeProvider is allowed to be used.')
+      console.warn('Only one ThemeProvider is allowed to be used.')
     }
     ThemeProvider.instance = this
   }

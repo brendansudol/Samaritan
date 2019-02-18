@@ -1,5 +1,5 @@
 import React from 'react'
-import { AsyncStorage, View, StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { Button, Input } from 'react-native-elements'
 
 import { signInTemp } from '../util'
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
-    paddingVertical: 32,
+    paddingTop: 24,
+    paddingBottom: 32,
   },
 })

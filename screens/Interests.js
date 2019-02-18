@@ -1,7 +1,8 @@
 import React from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
-import { Button, Text } from 'react-native-elements'
+import { StyleSheet, View } from 'react-native'
+import { Button } from 'react-native-elements'
 
+import { Text } from '../components'
 import { uiStyles } from '../util/styles'
 
 const options = ['abc', 'def', 'ghi', 'jkl', 'mno', 'pqr', 'stu', 'vwy']
@@ -25,11 +26,10 @@ export default class StayTunedScreen extends React.Component {
     const selected = new Set(this.state.selected)
 
     return (
-      <ScrollView
-        style={[styles.container, { backgroundColor: '#eee' }]}
-        contentContainerStyle={styles.content}
-      >
-        <Text h2>What are your interests?</Text>
+      <View style={styles.container}>
+        <Text type="title1" color="#000">
+          What are your interests?
+        </Text>
         <View
           style={{
             flex: 1,
@@ -48,13 +48,15 @@ export default class StayTunedScreen extends React.Component {
             />
           ))}
         </View>
-        <Button
-          title="Next"
-          containerStyle={uiStyles.button.containerStyle}
-          buttonStyle={uiStyles.button.buttonStyle}
-          onPress={() => this.props.navigation.navigate('Causes')}
-        />
-      </ScrollView>
+        <View style={styles.footer}>
+          <Button
+            title="Next"
+            containerStyle={uiStyles.button.containerStyle}
+            buttonStyle={uiStyles.button.buttonStyle}
+            onPress={() => this.props.navigation.navigate('Causes')}
+          />
+        </View>
+      </View>
     )
   }
 }
@@ -77,13 +79,12 @@ const optionBtnStyles = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 16,
-    paddingVertical: 48,
+    paddingTop: 64,
+    paddingHorizontal: 24,
   },
-  content: {
-    padding: 4,
-  },
-  card: {
-    margin: 4,
+  footer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    paddingBottom: 32,
   },
 })

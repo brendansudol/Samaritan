@@ -6,7 +6,6 @@ import {
   SafeAreaView,
   Text,
 } from 'react-native'
-import { StackActions } from 'react-navigation'
 
 import Icon from './Icon'
 import { StyleGuide } from './theme'
@@ -16,16 +15,8 @@ export default class TabBar extends React.Component {
     const { tabs, navigation } = this.props
     const activeKey = tabs[navigation.state.index].key
 
-    if (activeKey !== key) {
-      navigation.navigate(key)
-    }
-
-    // if (activeKey !== key) {
-    //   navigation.navigate(key)
-    // } else {
-    //   return
-    //   navigation.dispatch(StackActions.pop({ n: 1 }))
-    // }
+    if (key === activeKey) return
+    navigation.navigate(key)
   }
 
   render() {

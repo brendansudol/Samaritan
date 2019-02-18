@@ -1,8 +1,8 @@
 import { AppLoading, Asset, Font, Icon } from 'expo'
 import React from 'react'
-import { Provider } from 'react-redux'
 import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 import { ThemeProvider as ElementsThemeProvider } from 'react-native-elements'
+import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
@@ -24,8 +24,7 @@ const theme = {
   },
 }
 
-// TODO: remove logger in prod
-const middleware = [thunk, createLogger()]
+const middleware = [thunk, createLogger()] // TODO: remove logger in prod
 const store = createStore(reducer, applyMiddleware(...middleware))
 
 export default class App extends React.Component {

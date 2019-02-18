@@ -2,10 +2,11 @@ import React from 'react'
 import {
   Animated,
   Dimensions,
-  Image as RNImage,
+  Image,
   PanResponder,
   StyleSheet,
   Text,
+  View,
 } from 'react-native'
 
 const SCREEN_HEIGHT = Dimensions.get('window').height
@@ -14,13 +15,15 @@ const SCREEN_WIDTH = Dimensions.get('window').width
 export default class App extends React.Component {
   constructor(props) {
     super(props)
+
+    const defaultScale = this.props.isActive ? 0.9 : 0.85
+
     this.position = this.props.position
     this.rotate = this.position.x.interpolate({
       inputRange: [-SCREEN_WIDTH, 0, SCREEN_WIDTH],
       outputRange: ['-10deg', '0deg', '10deg'],
       extrapolate: 'clamp',
     })
-    const defaultScale = this.props.isActive ? 0.9 : 0.85
     this.nextCardScale = this.props.parentPosition
       ? this.props.parentPosition.x.interpolate({
           inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
@@ -92,20 +95,25 @@ export default class App extends React.Component {
         >
           <Text style={[styles.cardText, styles.cardTextNope]}>NOPE</Text>
         </Animated.View>
-
-        <RNImage style={styles.cardImg} source={this.props.image} />
+        <View style={styles.cardImgContainer}>
+          <Image style={styles.cardImg} source={this.props.image} />
+        </View>
       </Animated.View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  cardImgContainer: {
+    flex: 1,
+  },
   cardImg: {
     borderRadius: 20,
     height: null,
     width: null,
     resizeMode: 'cover',
     flex: 1,
+    backgroundColor: '#fff',
   },
   card: {
     position: 'absolute',
