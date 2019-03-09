@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons'
 import React from 'react'
 import {
   Alert,
@@ -75,8 +76,10 @@ export default class CardSwiper extends React.Component {
   }
 
   render() {
+    const { navigation } = this.props
     const { cards } = this.state
-    const isEmpty = cards.find(card => card.isActive) == null
+    const activeCard = cards.find(card => card.isActive)
+    const isEmpty = activeCard == null
 
     return (
       <View style={styles.container}>
@@ -87,14 +90,30 @@ export default class CardSwiper extends React.Component {
             this.renderCards(cards)
           )}
         </View>
-        <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.btn} onPress={() => this.handleYes()}>
-            <Text>Yes</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.btn} onPress={() => this.handleNo()}>
-            <Text>No</Text>
-          </TouchableOpacity>
-        </View>
+        {!isEmpty && (
+          <View style={styles.btnContainer}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => this.handleYes()}
+            >
+              <Ionicons name="md-thumbs-up" size={40} color="#2ecc71" />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.btn, styles.btnSm]}
+              onPress={() =>
+                navigation.navigate('Cause', { cause: activeCard })
+              }
+            >
+              <Ionicons name="md-information" size={32} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => this.handleNo()}
+            >
+              <Ionicons name="md-close" size={40} color="#e74c3c" />
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     )
   }
@@ -120,12 +139,18 @@ const styles = StyleSheet.create({
     zIndex: -1,
   },
   btn: {
-    height: 70,
-    width: 70,
-    borderRadius: 35,
+    height: 60,
+    width: 60,
+    borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 15,
+    marginHorizontal: 10,
+    backgroundColor: '#efefef',
+  },
+  btnSm: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
     backgroundColor: '#efefef',
   },
 })

@@ -1,19 +1,24 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { Button, Input } from 'react-native-elements'
+import { Button as RNButton, StyleSheet, Text, View } from 'react-native'
+import { Button, Icon, Input } from 'react-native-elements'
+import { connect } from 'react-redux'
 
-import { signInTemp } from '../util'
+import { attemptLogin } from '../actions/auth'
 import { uiStyles } from '../util/styles'
+import { authNav } from './SignIn'
 
-export default class SignUp extends React.Component {
-  static navigationOptions = {
-    title: 'Sign up',
-  }
+class SignUp extends React.Component {
+  static navigationOptions = authNav('Sign up')
 
   state = {
     name: '',
     email: '',
     password: '',
+  }
+
+  handleSignUp = async () => {
+    await this.props.attemptLogin()
+    this.props.navigation.navigate('Interests')
   }
 
   render() {
@@ -48,7 +53,7 @@ export default class SignUp extends React.Component {
             title="Sign up"
             containerStyle={uiStyles.button.containerStyle}
             buttonStyle={uiStyles.button.buttonStyle}
-            onPress={this._signUpAsync}
+            onPress={this.handleSignUp}
           />
         </View>
         <View style={styles.footer}>
@@ -63,11 +68,6 @@ export default class SignUp extends React.Component {
         </View>
       </View>
     )
-  }
-
-  _signUpAsync = async () => {
-    await signInTemp()
-    this.props.navigation.navigate('Interests')
   }
 }
 
@@ -90,3 +90,11 @@ const styles = StyleSheet.create({
     paddingBottom: 32,
   },
 })
+
+const mapStateToProps = ({ auth }) => ({ auth })
+const mapDispatchToProps = { attemptLogin }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUp)

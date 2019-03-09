@@ -73,7 +73,7 @@ const RootNavigator = createSwitchNavigator(
     Landing,
     Main: MainTabNavigator,
   },
-  { initialRouteName: 'Main', headerMode: 'none' }
+  { initialRouteName: 'Auth', headerMode: 'none' }
 )
 
 const App = createAppContainer(RootNavigator)

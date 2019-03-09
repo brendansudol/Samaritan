@@ -2,49 +2,24 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import { NavigationEvents } from 'react-navigation'
+import { connect } from 'react-redux'
 
+import { logout } from '../actions/auth'
 import { Container, NavigationBar, Content } from '../components'
-import { checkAuth, signOutTemp } from '../util'
 
-export default class Profile extends React.Component {
+class Profile extends React.Component {
   static navigationOptions = {
     title: 'Stay tuned!',
   }
 
-  state = {
-    isSignedIn: false,
-    isReady: false,
-  }
-
-  async componentDidMount() {
-    this.refresh()
-  }
-
-  refresh = async () => {
-    const isSignedIn = await checkAuth()
-    this.setState({ isSignedIn, isReady: true })
-  }
-
-  handleSignOut = async () => {
-    await signOutTemp()
-    this.setState({ isSignedIn: false })
-  }
-
-  handleWillFocus = _payload => {
-    this.setState({ isReady: false })
-  }
-
-  handleDidFocus = _payload => {
-    this.refresh()
+  handleSignOut = () => {
+    this.props.logout()
   }
 
   renderContent = () => {
-    const { navigation } = this.props
-    const { isSignedIn, isReady } = this.state
+    const { authenticated, navigation } = this.props
 
-    if (!isReady) return null
-
-    if (isSignedIn) {
+    if (authenticated) {
       return (
         <View>
           <Text style={{ marginBottom: 32 }}>My donations... (TODO)</Text>
@@ -68,10 +43,6 @@ export default class Profile extends React.Component {
 
     return (
       <Container>
-        <NavigationEvents
-          onWillFocus={this.handleWillFocus}
-          onDidFocus={this.handleDidFocus}
-        />
         <NavigationBar title="Profile" expanded {...{ navigation }} />
         <Content style={styles.content}>{this.renderContent()}</Content>
       </Container>
@@ -84,3 +55,11 @@ const styles = StyleSheet.create({
     padding: 16,
   },
 })
+
+const mapStateToProps = ({ auth }) => ({ ...auth })
+const mapDispatchToProps = { logout }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Profile)

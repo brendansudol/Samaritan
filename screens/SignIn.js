@@ -1,18 +1,40 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { Button, Input } from 'react-native-elements'
+import { Button, Icon, Input } from 'react-native-elements'
+import { connect } from 'react-redux'
 
-import { signInTemp } from '../util'
+import { attemptLogin } from '../actions/auth'
 import { uiStyles } from '../util/styles'
 
-export default class SignIn extends React.Component {
-  static navigationOptions = {
-    title: 'Sign in',
+export const authNav = title => ({ navigation }) => {
+  return {
+    title,
+    headerRight: (
+      <Icon
+        name="md-close"
+        type="ionicon"
+        color="#4388d6"
+        iconStyle={{ paddingHorizontal: 16 }}
+        onPress={() => navigation.navigate('Main')}
+      />
+    ),
   }
+}
+
+class SignIn extends React.Component {
+  static navigationOptions = authNav('Sign in')
 
   state = {
     email: '',
     password: '',
+  }
+
+  handleSignIn = async () => {
+    await this.props.attemptLogin()
+
+    if (this.props.auth.authenticated) {
+      this.props.navigation.navigate('Main')
+    }
   }
 
   render() {
@@ -39,7 +61,7 @@ export default class SignIn extends React.Component {
             title="Sign in"
             containerStyle={uiStyles.button.containerStyle}
             buttonStyle={uiStyles.button.buttonStyle}
-            onPress={this._signInAsync}
+            onPress={this.handleSignIn}
           />
         </View>
         <View style={styles.footer}>
@@ -54,11 +76,6 @@ export default class SignIn extends React.Component {
         </View>
       </View>
     )
-  }
-
-  _signInAsync = async () => {
-    await signInTemp()
-    this.props.navigation.navigate('CardSwipers')
   }
 }
 
@@ -81,3 +98,11 @@ const styles = StyleSheet.create({
     paddingBottom: 32,
   },
 })
+
+const mapStateToProps = ({ auth }) => ({ auth })
+const mapDispatchToProps = { attemptLogin }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignIn)

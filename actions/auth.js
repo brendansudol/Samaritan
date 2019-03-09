@@ -12,7 +12,10 @@ export const attemptLogin = (user, pw) => dispatch => {
   dispatch(requestLogin())
   console.log(`user: ${user} pw: ${pw}`)
 
-  setTimeout(() => {
-    dispatch(completeLogin({ id: 1 }))
-  }, 1000)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      dispatch(completeLogin({ id: 1 }))
+      resolve()
+    }, 500)
+  })
 }
