@@ -30,14 +30,7 @@ export default class StayTunedScreen extends React.Component {
         <Text type="title1" color="#000">
           What are your interests?
         </Text>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            paddingVertical: 24,
-          }}
-        >
+        <View style={styles.optionsContainer}>
           {options.map((option, i) => (
             <Button
               key={i}
@@ -48,14 +41,12 @@ export default class StayTunedScreen extends React.Component {
             />
           ))}
         </View>
-        <View style={styles.footer}>
-          <Button
-            title="Next"
-            containerStyle={uiStyles.button.containerStyle}
-            buttonStyle={uiStyles.button.buttonStyle}
-            onPress={() => this.props.navigation.navigate('Causes')}
-          />
-        </View>
+        <Button
+          title="Next"
+          containerStyle={uiStyles.button.containerStyle}
+          buttonStyle={uiStyles.button.buttonStyle}
+          onPress={() => this.props.navigation.navigate('Causes')}
+        />
       </View>
     )
   }
@@ -72,19 +63,19 @@ const optionBtnStyles = {
     paddingHorizontal: 16,
   },
   titleStyle: {
-    fontSize: 12,
+    fontSize: 14,
   },
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 64,
-    paddingHorizontal: 24,
+    padding: 24,
+    justifyContent: 'center',
   },
-  footer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    paddingBottom: 32,
+  optionsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    paddingVertical: 40,
   },
 })
