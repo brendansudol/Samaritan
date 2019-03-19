@@ -34,12 +34,12 @@ const CausesStack = createStackNavigator(
 
 const MainTabNavigator = createBottomTabNavigator(
   {
-    Causes: CausesStack,
     Profile,
+    Causes: CausesStack,
   },
   TabNavigatorOptions([
-    { key: 'Causes', label: 'Causes', icon: 'feed' },
     { key: 'Profile', label: 'Profile', icon: 'account' },
+    { key: 'Causes', label: 'Causes', icon: 'feed' },
   ])
 )
 
@@ -73,7 +73,7 @@ const RootNavigator = createSwitchNavigator(
     Landing,
     Main: MainTabNavigator,
   },
-  { initialRouteName: 'Auth', headerMode: 'none' }
+  { initialRouteName: 'Main', headerMode: 'none' }
 )
 
 const App = createAppContainer(RootNavigator)

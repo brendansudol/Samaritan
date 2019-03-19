@@ -1,4 +1,5 @@
 import {
+  ADD_CREDIT_CARD,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
@@ -8,6 +9,7 @@ import {
 const initialState = {
   fetching: false,
   authenticated: false,
+  hasCreditCard: false,
   error: '',
 }
 
@@ -19,6 +21,8 @@ const auth = (state = initialState, action) => {
       return { ...state, fetching: false, authenticated: true }
     case LOGIN_FAILURE:
       return { ...state, fetching: false, error: action.error }
+    case ADD_CREDIT_CARD:
+      return { ...state, hasCreditCard: true }
     case LOGOUT_SUCCESS:
       return { ...initialState }
     default:

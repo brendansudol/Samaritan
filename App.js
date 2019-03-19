@@ -19,7 +19,7 @@ const theme = {
   },
   Text: {
     style: {
-      fontFamily: 'SFProText-Bold',
+      fontFamily: 'SFProText-Regular',
     },
   },
 }
